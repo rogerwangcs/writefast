@@ -1,0 +1,41 @@
+html {
+  touch-action: manipulation;
+  height: 100%;
+  user-select: none;
+}
+
+body {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Raleway', sans-serif;
+  color: rgb(41, 41, 41);
+}
+
+h5 {
+  font-weight: 500;
+  color: gray;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* div { outline: 1px dotted pink } */
+
+/* p   { outline: 1px solid green }
+a   { outline: 2px solid yellow }
+li  { outline: 1px dashed cyan }
+img { outline: 1px solid purple} */
+
+/* Modal Centering Fix */
+.ui.page.modals.transition.visible {
+  display: flex !important;
+}
