@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Header = styled.div`
+  z-index: 1;
   position: ${props => (props.large ? "absolute" : "fixed")};
 
   width: 100%;
