@@ -7,6 +7,8 @@ html {
 body {
   height: 100%;
   overflow-y: scroll;
+  overflow: hidden;
+  background-color: #305DB6;
 }
 
 h1,
@@ -15,8 +17,15 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: rgb(41, 41, 41);
+}
+
+h1 {
+  font-family: 'Rubik', sans-serif;
+  font-style: italic;
+  font-size: 36px;
+  color: white;
 }
 
 h5 {
@@ -26,16 +35,18 @@ h5 {
 
 p {
   font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 }
 
-/* div { outline: 1px dotted pink } */
+.public-DraftStyleDefault-block {
+  background-image: linear-gradient(to right, #fafafa 0px, transparent 10px), linear-gradient(to left, #fafafa 0px, transparent 10px), repeating-linear-gradient(#fafafa, #fafafa 30px, #ccc 32px, #ccc 32px, #fafafa 31px);
+}
+
+div {
+  outline: 1px dotted pink
+}
 
 /* p   { outline: 1px solid green }
 a   { outline: 2px solid yellow }
 li  { outline: 1px dashed cyan }
 img { outline: 1px solid purple} */
-
-/* Modal Centering Fix */
-.ui.page.modals.transition.visible {
-  display: flex !important;
-}

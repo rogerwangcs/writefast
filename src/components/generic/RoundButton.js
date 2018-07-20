@@ -1,21 +1,22 @@
-import styled from 'styled-components';
-import theme from 'constants/theme';
+import styled from "styled-components";
+import theme from "constants/theme";
 
-const RoundButton = styled.div `
+const RoundButton = styled.div`
+  display: inline-block;
+  margin: 8px;
+  padding: 7px 18px;
+  background-color: ${props =>
+    props.transparent ? "rgba(0,0,0,0.25)" : theme.colors.secondary2};
 
-  height: 32px;
-  margin: 10px;
-  padding: 6px 15px 0px;
-  background-color: ${props => props.color};
+  border-radius: 20px/50%;
 
-  border-radius: 15px/50%;
-
-  color: white;
-  font-size: 16px;
+  > * {
+    color: white;
+  }
 
   :hover {
     cursor: pointer;
-    background-color: ${theme.colors.secondary1};
+    background-color: ${theme.colors.secondary2};
   }
 `;
 
