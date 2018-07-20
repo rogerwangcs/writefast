@@ -41,7 +41,7 @@ const StyledEditor = styled.div`
   min-height: 1000px;
 
   margin-top: 200px;
-  margin-bottom: 100px;
+  margin-bottom: 300px;
 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.15);
 
@@ -119,8 +119,6 @@ class MyEditor extends React.Component {
         this.resetTime();
       }
     }
-
-    console.log(lastSent);
   };
 
   //focus into the draft editor.
@@ -131,6 +129,23 @@ class MyEditor extends React.Component {
     }
     this.setState({
       editorState
+    });
+  };
+
+  //scrolls to current block when user types
+  autoScroll = () => {
+    let draftEditor = null;
+    this.getSelectedBlockElement() !== null
+      ? (draftEditor = this.getSelectedBlockElement())
+      : (draftEditor = document.getElementsByClassName("DraftEditor-root")[0]);
+
+    //calculate offsetTop to scroll to.
+    const draftEditorLoc = draftEditor.offsetTop + draftEditor.clientHeight;
+
+    window.scroll({
+      top: Math.max(0, draftEditorLoc - 100),
+      left: 0,
+      behavior: "smooth"
     });
   };
 
@@ -169,13 +184,15 @@ class MyEditor extends React.Component {
   };
 
   onChange = editorState => {
-    this.setState({ editorState });
-    this.checkPeriod(
-      editorState
-        .getCurrentContent()
-        .getFirstBlock()
-        .getText()
-    );
+    this.setState({ editorState }, () => this.autoScroll());
+
+    const content = editorState.getCurrentContent();
+    const selection = editorState.getSelection();
+
+    const text = content.getBlockForKey(selection.getAnchorKey()).getText();
+    const anchorText = text.slice(0, selection.getAnchorOffset());
+
+    this.checkPeriod(anchorText);
   };
 
   componentDidMount = () => {
@@ -184,29 +201,6 @@ class MyEditor extends React.Component {
 
     //start timeloop
     this.timeLoop = setInterval(() => this.decrementTime(), 1000);
-
-    //set draftEditor to node of cursor location or last node if not focused.
-    this.autoScroll = setInterval(() => {
-      let draftEditor = null;
-      this.getSelectedBlockElement() !== null
-        ? (draftEditor = this.getSelectedBlockElement())
-        : (draftEditor = document.getElementsByClassName(
-            "DraftEditor-root"
-          )[0]);
-
-      //calculate offsetTop to scroll to.
-      const draftEditorLoc = draftEditor.offsetTop + draftEditor.clientHeight;
-
-      window.scroll({
-        top: Math.max(0, draftEditorLoc - window.innerHeight / 2),
-        left: 0,
-        behavior: "smooth"
-      });
-    }, 300);
-
-    window.onbeforeunload = function() {
-      return "Dude, are you sure you want to leave? Think of the kittens!";
-    };
   };
 
   componentWillUnmount = () => {

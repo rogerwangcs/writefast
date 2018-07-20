@@ -42,9 +42,7 @@ p {
   background-image: linear-gradient(to right, #fafafa 0px, transparent 10px), linear-gradient(to left, #fafafa 0px, transparent 10px), repeating-linear-gradient(#fafafa, #fafafa 30px, #ccc 32px, #ccc 32px, #fafafa 31px);
 }
 
-div {
-  outline: 1px dotted pink
-}
+/* div { outline: 1px dotted pink } */
 
 /* p   { outline: 1px solid green }
 a   { outline: 2px solid yellow }
