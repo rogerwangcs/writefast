@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pace: 60,
+      pace: "normal",
       length: "full"
     };
   }
@@ -34,10 +34,31 @@ class App extends Component {
         <Header large={window.location.pathname === "/"}>
           <h1>Write Fast</h1>
         </Header>
-        <Options />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/write" component={Editor} />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Home
+                pace={this.state.pace}
+                length={this.state.length}
+                setPace={this.setPace}
+                setLength={this.setLength}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/write"
+            render={() => (
+              <Editor
+                pace={this.state.pace}
+                length={this.state.length}
+                setPace={this.setPace}
+                setLength={this.setLength}
+              />
+            )}
+          />
           <Route exact path="/404" component={ErrorPage} />
         </Switch>
       </div>

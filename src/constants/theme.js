@@ -1,7 +1,7 @@
 const colors = {
   darkblue: '#141c30',
   fadedblue: '#283a5e',
-  hoverblue: '#437eff',
+  hoverblue: '#68bdff',
   creme: '#f9f9f4',
   lightgreen: '#25bc83',
   hovergreen: '#1ff296',

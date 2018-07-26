@@ -8,12 +8,8 @@ import RoundButton from "components/generic/RoundButton";
 
 const Home = props => (
   <div>
-    {/* <Options /> */}
-    <Begin>
-      <RoundButton color={theme.colors.secondary4}>
-        <h1>Begin</h1>
-      </RoundButton>
-    </Begin>
+    <Options {...props} />
+    <Begin />
   </div>
 );
 

@@ -136,12 +136,20 @@ const StyledEditor = styled.div`
 class MyEditor extends React.Component {
   constructor(props) {
     super(props);
+
+    let pace;
+    props.pace === "lightning"
+      ? (pace = 20)
+      : props.pace === "normal"
+        ? (pace = 60)
+        : (pace = 120);
+
     this.state = {
       editorState: EditorState.createWithContent(
         ContentState.createFromText("    ")
       ),
-      initialTime: 60,
-      time: 60,
+      initialTime: pace,
+      time: pace,
       warningMode: "normal",
       submit: false,
       hover: false
@@ -162,7 +170,7 @@ class MyEditor extends React.Component {
   };
 
   setWarningMode = () => {
-    if (this.state.time > this.state.initialTime / 2) {
+    if (this.state.time > this.state.initialTime * 0.6) {
       this.setState({ warningMode: "normal" });
     } else if (this.state.time > 10) {
       this.setState({ warningMode: "mild" });
@@ -297,10 +305,10 @@ class MyEditor extends React.Component {
               when={true}
               message="You haven't finished your writing sprint. You will lose your progress if you leave now. Are you sure you want to leave?"
             />
-            {this.state.time}
             <StyledEditor
               // Prevents user from copying or dragging text outside of the editor.
               onCopy={e => e.preventDefault()}
+              onPaste={e => e.preventDefault()}
               onDragStart={e => e.preventDefault()}
               onClick={() => this.focus()}
               warningMode={this.state.warningMode}
@@ -315,7 +323,7 @@ class MyEditor extends React.Component {
               className="hover-hitbox"
               onMouseEnter={() => this.handleHover(true)}
               onMouseLeave={() => this.handleHover(false)}
-              onClick={() => this.props.history.push("/write")}
+              onClick={() => this.props.history.push("/")}
             />
             <SubmitButton display={this.state.submit} hover={this.state.hover}>
               <h1>Finish</h1>

@@ -49,7 +49,7 @@ const OptionSection = styled.div`
   }
 `;
 
-const Options = () => {
+const Options = props => {
   return (
     <OptionsGroup>
       <CSSTransition
@@ -61,24 +61,49 @@ const Options = () => {
         <div>
           <OptionSection>
             <h2>Speed:</h2>
-            <RoundButton transparent color={theme.colors.secondary4}>
+            <RoundButton
+              active={props.pace}
+              name="lightning"
+              color={theme.colors.hoverblue}
+              onClick={() => props.setPace("lightning")}
+            >
               <p>Lightning</p>
             </RoundButton>
-            <RoundButton transparent color={theme.colors.secondary4}>
+            <RoundButton
+              active={props.pace}
+              name="normal"
+              color={theme.colors.hoverblue}
+              onClick={() => props.setPace("normal")}
+            >
               <p>Normal</p>
             </RoundButton>
-            <RoundButton transparent color={theme.colors.secondary4}>
+            <RoundButton
+              active={props.pace}
+              name="creative"
+              color={theme.colors.hoverblue}
+              onClick={() => props.setPace("creative")}
+            >
               <p>Creative</p>
             </RoundButton>
           </OptionSection>
           <OptionSection>
             <h2>Length:</h2>
-            <RoundButton transparent color={theme.colors.secondary4}>
+            <RoundButton
+              active={props.length}
+              name="full"
+              color={theme.colors.hoverblue}
+              onClick={() => props.setLength("full")}
+            >
               <p>Full Page</p>
             </RoundButton>
-            <RoundButton transparent color={theme.colors.secondary4}>
+            {/* <RoundButton
+              active={props.length}
+              name="half"
+              color={theme.colors.hoverblue}
+              onClick={() => props.setLength("half")}
+            >
               <p>Half Page</p>
-            </RoundButton>
+            </RoundButton> */}
           </OptionSection>
         </div>
       </CSSTransition>
