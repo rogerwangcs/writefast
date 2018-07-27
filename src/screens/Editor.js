@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { Prompt } from "react-router";
 import { Editor, EditorState, ContentState, Modifier } from "draft-js";
 import * as Scroll from "react-scroll";
@@ -71,7 +72,7 @@ const HoverBg = styled.div`
   height: 100vh;
   border-radius: ${props => (props.hover ? "0px" : "300px 300px 100px 100px;")};
 
-  background-color: ${theme.colors.hoverblue};
+  background-color: ${theme.colors.primary1};
   margin: auto;
   top: 0;
   left: 0;
@@ -96,7 +97,7 @@ const SubmitButton = styled.div`
 `;
 
 const StyledEditor = styled.div`
-  z-index: 2;
+  z-index: 15;
   position: relative;
   user-select: none;
 
@@ -280,6 +281,19 @@ class MyEditor extends React.Component {
     this.setState({ submit: this.canSubmit() });
   };
 
+  handleSubmit = () => {
+    const newContent = this.state.editorState
+      .getCurrentContent()
+      .getPlainText();
+    const newPage = {
+      title: "New Page",
+      content: newContent
+    };
+    console.log(newPage);
+    this.props.addPage(newPage);
+    this.props.history.push("/pages");
+  };
+
   componentDidMount = () => {
     //set focus onto editor.
     this.focus();
@@ -301,10 +315,10 @@ class MyEditor extends React.Component {
         </div>
         <Section>
           <ContentWrapper>
-            <Prompt
+            {/* <Prompt
               when={true}
               message="You haven't finished your writing sprint. You will lose your progress if you leave now. Are you sure you want to leave?"
-            />
+            /> */}
             <StyledEditor
               // Prevents user from copying or dragging text outside of the editor.
               onCopy={e => e.preventDefault()}
@@ -323,7 +337,7 @@ class MyEditor extends React.Component {
               className="hover-hitbox"
               onMouseEnter={() => this.handleHover(true)}
               onMouseLeave={() => this.handleHover(false)}
-              onClick={() => this.props.history.push("/")}
+              onClick={() => this.handleSubmit()}
             />
             <SubmitButton display={this.state.submit} hover={this.state.hover}>
               <h1>Finish</h1>
@@ -335,4 +349,4 @@ class MyEditor extends React.Component {
   }
 }
 
-export default MyEditor;
+export default withRouter(MyEditor);

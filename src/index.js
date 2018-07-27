@@ -1,18 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 import App from "App";
 import registerServiceWorker from "services/registerServiceWorker";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <App />
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById("root")
 );
-registerServiceWorker();
+// registerServiceWorker();
 
+//webpack hot reloading
 if (module.hot) {
   module.hot.accept();
 }

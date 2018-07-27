@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
+import LocalStorageHandler from "services/LocalStorageHandler";
+
 import "semantic-ui-css/semantic.min.css";
 import "App.css";
 import NavBar from "components/Nav/NavBar.js";
 import Home from "screens/Home";
 import Editor from "screens/Editor";
+import Manager from "screens/Manager";
 import ErrorPage from "screens/ErrorPage.js";
 
 import Header from "components/generic/Header";
@@ -18,20 +21,32 @@ class App extends Component {
       pace: "normal",
       length: "full"
     };
+
+    LocalStorageHandler.initializeStorage();
   }
 
-  setPace = pace => {
-    this.setState({ pace: pace });
+  setPace = newPace => {
+    this.setState({ pace: newPace });
   };
 
-  setLength = length => {
-    this.setState({ length: length });
+  setLength = newLength => {
+    this.setState({ length: newLength });
+  };
+
+  getPages = () => {
+    console.log(LocalStorageHandler.getPages());
+    return LocalStorageHandler.getPages();
+  };
+
+  addPage = newPage => {
+    LocalStorageHandler.storePage(newPage);
   };
 
   render() {
     return (
       <div className="App">
-        <Header large={window.location.pathname === "/"}>
+        {/* for browserRouter, this needs to be window.location.pathname */}
+        <Header large={window.location.hash === "#/"}>
           <h1>Write Fast</h1>
         </Header>
         <Switch>
@@ -56,10 +71,26 @@ class App extends Component {
                 length={this.state.length}
                 setPace={this.setPace}
                 setLength={this.setLength}
+                addPage={this.addPage}
               />
             )}
           />
-          <Route exact path="/404" component={ErrorPage} />
+          <Route
+            exact
+            path="/pages"
+            render={() => <Manager getPages={this.getPages} />}
+          />
+          <Route
+            path="/*"
+            render={() => (
+              <Redirect
+                to={{
+                  pathname: "/"
+                }}
+              />
+            )}
+          />
+          {/* <Route exact path="/404" component={ErrorPage} /> */}
         </Switch>
       </div>
     );

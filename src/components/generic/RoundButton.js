@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const RoundButton = styled.div`
+  position: relative;
   display: inline-block;
   margin: 8px;
   padding: 7px 18px;
