@@ -3,6 +3,15 @@ const pagesKey = "pages";
 export default class LocalStorageHandler {
   constructor() {}
 
+  static generateID = () => {
+    return (
+      "_" +
+      Math.random()
+        .toString(36)
+        .substr(2, 9)
+    );
+  };
+
   static initializeStorage = () => {
     if (!localStorage.hasOwnProperty(pagesKey)) {
       localStorage.setItem(pagesKey, JSON.stringify([]));
@@ -15,8 +24,18 @@ export default class LocalStorageHandler {
   };
 
   static storePage = newPage => {
-    let newPages = LocalStorageHandler.getPages().slice();
-    newPages.push(newPage);
-    localStorage.setItem(pagesKey, JSON.stringify(newPages));
+    const withIDPage = Object.assign(
+      { _id: LocalStorageHandler.generateID() },
+      newPage
+    );
+    let pages = LocalStorageHandler.getPages().slice();
+    pages.push(withIDPage);
+    localStorage.setItem(pagesKey, JSON.stringify(pages));
+  };
+
+  static deletePage = pageID => {
+    let pages = LocalStorageHandler.getPages().slice();
+    pages = pages.filter(page => page._id !== pageID);
+    localStorage.setItem(pagesKey, JSON.stringify(pages));
   };
 }

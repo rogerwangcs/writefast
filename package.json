@@ -1,15 +1,17 @@
 {
   "name": "writefast",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "draft-js": "^0.10.5",
     "react": "^16.4.0",
+    "react-clipboard.js": "^2.0.0",
     "react-dom": "^16.4.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "react-scroll": "^1.7.10",
+    "react-toastify": "^4.1.0",
     "react-transition-group": "^2.4.0",
     "semantic-ui-css": "^2.3.1",
     "semantic-ui-react": "^0.80.0",

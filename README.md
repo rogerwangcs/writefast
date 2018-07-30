@@ -1,1 +1,1 @@
-# writefast
+# WriteFast

@@ -215,17 +215,17 @@ class MyEditor extends React.Component {
   //scrolls to current block when user types
   autoScroll = () => {
     //currently not working: cant scroll properly when there is only one large content block.
-    // let draftEditor = null;
-    // this.getSelectedBlockElement() !== null
-    //   ? (draftEditor = this.getSelectedBlockElement())
-    //   : (draftEditor = document.getElementsByClassName("DraftEditor-root")[0]);
-    // //calculate offsetTop to scroll to.
-    // const draftEditorLoc = draftEditor.offsetTop + draftEditor.clientHeight;
-    // window.scroll({
-    //   top: Math.max(0, draftEditorLoc - 100),
-    //   left: 0,
-    //   behavior: "smooth"
-    // });
+    let draftEditor = null;
+    this.getSelectedBlockElement() !== null
+      ? (draftEditor = this.getSelectedBlockElement())
+      : (draftEditor = document.getElementsByClassName("DraftEditor-root")[0]);
+    //calculate offsetTop to scroll to.
+    const draftEditorLoc = draftEditor.offsetTop + draftEditor.clientHeight;
+    window.scroll({
+      top: Math.max(0, draftEditorLoc - 100),
+      left: 0,
+      behavior: "smooth"
+    });
   };
 
   canSubmit = () => {
@@ -315,10 +315,6 @@ class MyEditor extends React.Component {
         </div>
         <Section>
           <ContentWrapper>
-            {/* <Prompt
-              when={true}
-              message="You haven't finished your writing sprint. You will lose your progress if you leave now. Are you sure you want to leave?"
-            /> */}
             <StyledEditor
               // Prevents user from copying or dragging text outside of the editor.
               onCopy={e => e.preventDefault()}

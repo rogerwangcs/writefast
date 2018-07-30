@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import LocalStorageHandler from "services/LocalStorageHandler";
 
@@ -42,9 +44,27 @@ class App extends Component {
     LocalStorageHandler.storePage(newPage);
   };
 
+  deletePage = pageID => {
+    console.log(pageID);
+    LocalStorageHandler.deletePage(pageID);
+    this.forceUpdate();
+  };
+
   render() {
     return (
       <div className="App">
+        {/* where notification toasts will display. */}
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange={false}
+          draggable
+          pauseOnHover={false}
+        />
         {/* for browserRouter, this needs to be window.location.pathname */}
         <Header large={window.location.hash === "#/"}>
           <h1>Write Fast</h1>
@@ -78,7 +98,9 @@ class App extends Component {
           <Route
             exact
             path="/pages"
-            render={() => <Manager getPages={this.getPages} />}
+            render={() => (
+              <Manager getPages={this.getPages} deletePage={this.deletePage} />
+            )}
           />
           <Route
             path="/*"
