@@ -5,22 +5,24 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 import theme from "constants/theme";
 
-import RoundButton from "components/generic/RoundButton";
+import { RoundButton } from "components/generic/Buttons";
 
 const StyledPageItem = styled.div`
-  transition: transform 300ms ease-in-out;
+  transition: transform 200ms ease-in-out;
 
   :hover {
-    transform: scale(1.02) translateY(-10px);
+    transform: translateY(-3px);
 
     .actions {
       div {
         transform: scale(1);
+        opacity: 1;
       }
     }
   }
 
   .page-item {
+    overflow: hidden;
     background: white;
     width: 200px;
     height: 250px;
@@ -38,15 +40,27 @@ const StyledPageItem = styled.div`
   .actions {
     text-align: center;
     div {
-      transition: transform 300ms ease-in-out;
-      transform: scale(0);
+      transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+      transform: scale(0.8);
+      opacity: 0;
     }
   }
 `;
 
 const PageItem = props => {
-  const notify = () => {
-    toast.info("Copied to Clipboard!", {
+  const toastCopy = () => {
+    toast.success("Copied to Clipboard!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true
+    });
+  };
+
+  const toastDelete = () => {
+    toast.success("Page Deleted!", {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: true,
@@ -66,15 +80,20 @@ const PageItem = props => {
         <div className="actions">
           <Clipboard component="a" data-clipboard-text={props.content}>
             <RoundButton
-              color={theme.colors.secondary2}
-              onClick={() => notify()}
+              color={theme.colors.secondary3}
+              hoverColor={theme.colors.secondary1}
+              onClick={() => toastCopy()}
             >
               <p>Copy</p>
             </RoundButton>
           </Clipboard>
           <RoundButton
-            color={"red"}
-            onClick={() => props.deletePage(props.pageID)}
+            color={theme.colors.red2}
+            hoverColor={theme.colors.red1}
+            onClick={() => {
+              props.deletePage(props.pageID);
+              toastDelete();
+            }}
           >
             <p>Delete</p>
           </RoundButton>

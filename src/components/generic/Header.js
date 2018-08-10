@@ -6,7 +6,7 @@ const Header = styled.div`
   top: 0;
 
   width: 100%;
-  height: 300px;
+  height: 250px;
   text-align: center;
 
   transition: transform 500ms cubic-bezier(0.51, 0.02, 0.53, 0.91);

@@ -8,7 +8,7 @@ import viewport from "constants/viewport";
 import PageItem from "components/Manager/PageItem";
 import Section from "components/generic/Section";
 import ContentWrapper from "components/generic/ContentWrapper";
-import RoundButton from "components/generic/RoundButton";
+import { RoundButton } from "components/generic/Buttons";
 
 const StyledManager = styled.div`
   .header {
@@ -45,13 +45,17 @@ class Manager extends Component {
     super(props);
   }
 
+  componentDidMount = () => {
+    window.scrollTo(0,0);
+  }
+
   render() {
     return (
       <StyledManager>
         <div className="header">
           <RoundButton
-            name="back"
-            color={theme.colors.secondary2}
+            color={theme.colors.secondary3}
+            hoverColor={theme.colors.secondary1}
             onClick={() => this.props.history.push("/")}
           >
             <p>Start New</p>

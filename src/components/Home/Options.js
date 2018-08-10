@@ -4,13 +4,13 @@ import theme from "constants/theme";
 
 import { CSSTransition } from "react-transition-group";
 
-import RoundButton from "components/generic/RoundButton";
+import { TransparentButton } from "components/generic/Buttons";
 
 const OptionsGroup = styled.div`
   position: absolute;
   width: 100%;
 
-  top: 300px;
+  top: 250px;
 
   * {
     color: white;
@@ -60,51 +60,51 @@ const Options = props => {
       >
         <div>
           <OptionSection>
-            <h2>Speed:</h2>
-            <RoundButton
+            <h2>Pace:</h2>
+            <TransparentButton
               active={props.pace}
               name="lightning"
               color={theme.colors.hoverblue}
               onClick={() => props.setPace("lightning")}
             >
               <p>Lightning</p>
-            </RoundButton>
-            <RoundButton
+            </TransparentButton>
+            <TransparentButton
               active={props.pace}
               name="normal"
               color={theme.colors.hoverblue}
               onClick={() => props.setPace("normal")}
             >
               <p>Normal</p>
-            </RoundButton>
-            <RoundButton
+            </TransparentButton>
+            <TransparentButton
               active={props.pace}
               name="creative"
               color={theme.colors.hoverblue}
               onClick={() => props.setPace("creative")}
             >
               <p>Creative</p>
-            </RoundButton>
+            </TransparentButton>
           </OptionSection>
-          <OptionSection>
+          {/* <OptionSection>
             <h2>Length:</h2>
-            <RoundButton
+            <TransparentButton
               active={props.length}
               name="full"
               color={theme.colors.hoverblue}
               onClick={() => props.setLength("full")}
             >
               <p>Full Page</p>
-            </RoundButton>
-            {/* <RoundButton
+            </TransparentButton>
+            <TransparentButton
               active={props.length}
               name="half"
               color={theme.colors.hoverblue}
               onClick={() => props.setLength("half")}
             >
               <p>Half Page</p>
-            </RoundButton> */}
-          </OptionSection>
+            </TransparentButton>
+          </OptionSection> */}
         </div>
       </CSSTransition>
     </OptionsGroup>

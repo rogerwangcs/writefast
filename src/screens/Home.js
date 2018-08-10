@@ -4,7 +4,6 @@ import theme from "constants/theme";
 
 import Options from "components/Home/Options";
 import Begin from "components/Home/Begin";
-import RoundButton from "components/generic/RoundButton";
 
 const Home = props => (
   <div>
@@ -12,5 +11,4 @@ const Home = props => (
     <Begin />
   </div>
 );
-
 export default Home;

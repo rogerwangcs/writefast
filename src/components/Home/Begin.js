@@ -6,7 +6,6 @@ import viewport from "constants/viewport";
 import theme from "constants/theme.js";
 
 import { CSSTransition } from "react-transition-group";
-import RoundButton from "components/generic/RoundButton";
 
 const StyledBegin = styled.div`
   text-align: center;
@@ -63,11 +62,10 @@ const BeginButton = styled.div`
   position: absolute;
   width: 100%;
 
-  bottom: 300px;
+  bottom: 250px;
 
   transition: all 300ms ease-in-out;
-  transform-origin: center bottom;
-  transform: ${props => (props.hover ? "scale(1.1)" : "scale(1)")};
+  transform: ${props => (props.hover ? "translateY(-8px)" : "translateY(0px)")};
 `;
 
 const PaperGraphic = styled.div`
@@ -80,14 +78,14 @@ const PaperGraphic = styled.div`
   bottom: 0;
 
   width: 600px;
-  height: 275px;
+  height: 250px;
 
   border-radius: 25px 25px 0px 0px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.15);
 
   transition: transform 300ms ease-in-out;
   transform-origin: bottom;
-  transform: ${props => (props.hover ? "translateY(0px)" : "translateY(50px)")};
+  transform: ${props => (props.hover ? "translateY(0px)" : "translateY(25px)")};
 `;
 
 const HoverBg = styled.div`
@@ -105,7 +103,7 @@ const HoverBg = styled.div`
   bottom: 0;
 
   transition: all 300ms ease-out;
-  transform: ${props => (props.hover ? "scale(1)" : "scale(0.3,0)")};
+  transform: ${props => (props.hover ? "scale(1)" : "scale(0)")};
   transform-origin: center bottom;
 `;
 

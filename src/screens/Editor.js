@@ -96,7 +96,28 @@ const SubmitButton = styled.div`
   transform: ${props => (props.hover ? "scale(1.25)" : "scale(1)")};
 `;
 
+const TitleBox = styled.div`
+  margin: 150px 0px 20px;
+
+  input {
+    color: ${theme.colors.black1};
+    font-size: 36px;
+
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    :hover {
+      border: none;
+      outline: none;
+    }
+  }
+`;
+
 const StyledEditor = styled.div`
+// remove if TitleBox is there
+  margin: 150px 0px 20px;
+
   z-index: 15;
   position: relative;
   user-select: none;
@@ -106,7 +127,6 @@ const StyledEditor = styled.div`
   padding: 50px 60px;
   min-height: 1000px;
 
-  margin-top: 200px;
   margin-bottom: 175px;
 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.15);
@@ -315,6 +335,9 @@ class MyEditor extends React.Component {
         </div>
         <Section>
           <ContentWrapper>
+            {/* <TitleBox>
+              <input placeholder="Title..." />
+            </TitleBox> */}
             <StyledEditor
               // Prevents user from copying or dragging text outside of the editor.
               onCopy={e => e.preventDefault()}
