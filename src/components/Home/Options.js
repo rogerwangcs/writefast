@@ -19,7 +19,7 @@ const OptionsGroup = styled.div`
     font-weight: 600;
   }
 
-  .options-enter {
+  /* .options-enter {
     opacity: 0.01;
     transform: scale(0.5) translateY(-100%);
   }
@@ -36,7 +36,7 @@ const OptionsGroup = styled.div`
     opacity: 0;
     transform: scale(0.5) translateY(-100%);
     transition: all 500ms ease-in-out;
-  }
+  } */
 `;
 
 const OptionSection = styled.div`

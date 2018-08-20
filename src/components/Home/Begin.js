@@ -38,7 +38,7 @@ const StyledBegin = styled.div`
     left: 0;
   }
 
-  .begin-enter {
+  /* .begin-enter {
     opacity: 0.01;
     transform: scale(0.5) translateY(-100%);
   }
@@ -55,7 +55,7 @@ const StyledBegin = styled.div`
     opacity: 0;
     transform: scale(0.5) translateY(-100%);
     transition: all 500ms ease-in-out;
-  }
+  } */
 `;
 
 const BeginButton = styled.div`
@@ -130,17 +130,10 @@ class Begin extends Component {
         <BeginButton hover={this.state.hover}>
           <h1>Start Writing!</h1>
         </BeginButton>
-        <CSSTransition
-          in={window.location.pathname === "/"}
-          timeout={500}
-          classNames="begin"
-          unmountOnExit
-        >
-          <div className="bg_container">
-            <HoverBg hover={this.state.hover} />
-            <PaperGraphic hover={this.state.hover} draggable="false" />
-          </div>
-        </CSSTransition>
+        <div className="bg_container">
+          <HoverBg hover={this.state.hover} />
+          <PaperGraphic hover={this.state.hover} draggable="false" />
+        </div>
       </StyledBegin>
     );
   }

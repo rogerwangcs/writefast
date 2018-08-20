@@ -77,7 +77,6 @@ class App extends Component {
         {!this.state.isMobile ? (
           <Switch>
             <Route
-              exact
               path="/"
               render={() => (
                 <Home
